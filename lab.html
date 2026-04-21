@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Prep — Umar</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d0f14;
+            --surface: #13161d;
+            --card: #181c25;
+            --border: #252a36;
+            --accent: #e8c56d;
+            --accent2: #6d9de8;
+            --text: #dde2ef;
+            --muted: #7a849a;
+            --tag-bg: #1e2330;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            min-height: 100vh;
+            padding: 0 0 80px;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #0d0f14 0%, #131825 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 48px 40px 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(232, 197, 109, 0.07) 0%, transparent 70%);
+        }
+
+        .header-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 5vw, 46px);
+            line-height: 1.15;
+            color: #fff;
+        }
+
+        header h1 span {
+            color: var(--accent);
+        }
+
+        header p {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 14px;
+            max-width: 500px;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .badge {
+            background: var(--tag-bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 4px 12px;
+            font-size: 11px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent2);
+        }
+
+        /* LAYOUT */
+        main {
+            max-width: 860px;
+            margin: 48px auto 0;
+            padding: 0 24px;
+        }
+
+        /* CATEGORY */
+        .category-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin: 48px 0 16px;
+            padding-left: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* CARD */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            position: relative;
+            transition: border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: #333b4f;
+        }
+
+        .q-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .q-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            background: rgba(232, 197, 109, 0.08);
+            border: 1px solid rgba(232, 197, 109, 0.18);
+            border-radius: 5px;
+            padding: 3px 9px;
+            white-space: nowrap;
+            margin-top: 2px;
+        }
+
+        .q-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        .answer {
+            color: var(--text);
+            font-size: 14.5px;
+            line-height: 1.85;
+            border-left: 2px solid var(--border);
+            padding-left: 16px;
+            margin-left: 2px;
+        }
+
+        .answer strong {
+            color: var(--accent2);
+            font-weight: 500;
+        }
+
+        /* TIP */
+        .tip {
+            margin-top: 14px;
+            background: rgba(109, 157, 232, 0.06);
+            border: 1px solid rgba(109, 157, 232, 0.14);
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-size: 12px;
+            color: var(--accent2);
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+
+        .tip::before {
+            content: '💡';
+            font-size: 13px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: var(--muted);
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        footer span {
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-tag">// EA-218 · Business Communications Lab</div>
+        <h1>Interview <span>Prep Sheet</span></h1>
+        <p>20 model answers tailored to your background — study, adapt, own it.</p>
+        <div class="badge-row">
+            <span class="badge">NEDUET · BSCS · 4th Sem</span>
+            <span class="badge">MERN Stack</span>
+            <span class="badge">145+ LeetCode</span>
+            <span class="badge">Future AI Engineer</span>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ── CATEGORY 1 ── -->
+        <div class="category-label">01 · Personal &amp; Background</div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q1</span>
+                <span class="q-text">Tell me about yourself.</span>
+            </div>
+            <div class="answer">
+                My name is Umar, and I'm a second-year Computer Science student at NED University of Engineering and
+                Technology, Karachi. I'm currently in my fourth semester, majoring in Computer Science and Information
+                Technology.<br><br>
+                On the technical side, I work as a junior MERN stack developer with a backend focus. I've built and
+                shipped full-stack projects including a notes application, an AI-integrated chat application, a hospital
+                management system, and I'm actively developing a group expense manager. I've solved over 145 problems on
+                LeetCode, which has sharpened my problem-solving and algorithmic thinking.<br><br>
+                Beyond coding, I'm deeply interested in Artificial Intelligence and Data Science — that's the long-term
+                direction I'm building toward. I believe combining solid software engineering foundations with AI
+                expertise is where I want to be in five years.
+            </div>
+            <div class="tip">Keep this under 90 seconds. End on a forward-looking note — your AI goal makes you sound
+                ambitious, not just a student.</div>
+        </div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q2</span>
+                <span class="q-text">Why are you interested in this position?</span>
+            </div>
+            <div class="answer">
+                This role genuinely excites me because it sits at the intersection of technical development and
+                real-world application — which is exactly where I want to grow. I'm not just looking for a position; I'm
+                looking for an environment where I can contribute meaningfully while also learning from experienced
+                professionals.<br><br>
+                Given my background in full-stack web development and my interest in backend systems, this opportunity
+                allows me to apply my current skills while pushing me toward the next level. I also see it as a step in
+                the direction of my long-term goal of working in AI and Data Science — understanding how software
+                systems work at scale is a foundation I need to build.
+            </div>
+            <div class="tip">If you know the actual company, replace the generic parts with specific details. The more
+                tailored, the better.</div>
+        </div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q3</span>
+                <span class="q-text">What do you know about our company?</span>
+            </div>
+            <div class="answer">
+                Based on my research, your company is known for [<strong>insert: company's core
+                    product/service</strong>] and has built a reputation for [<strong>insert: key strength — innovation,
+                    reliability, community, etc.</strong>]. What stood out to me was your focus on [<strong>specific
+                    mission or value</strong>], which resonates strongly with my own principles around building
+                meaningful technology.<br><br>
+                I also noticed [<strong>a recent achievement, product, or news item</strong>], which tells me the
+                company is growing and forward-thinking. That's the kind of environment I want to be part of at this
+                stage of my career.
+            </div>
+            <div class="tip">This is a fill-in-the-blank answer by design — you must research the actual company
+                tonight. Even 10 minutes on their LinkedIn or website is enough.</div>
+        </div>
+
+        <!-- ── CATEGORY 2 ── -->
+        <div class="category-label">02 · Problem Solving &amp; Pressure</div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q4</span>
+                <span class="q-text">Describe a challenge you've faced and how you overcame it.</span>
+            </div>
+            <div class="answer">
+                While building <strong>ChatZee</strong>, my MERN-based AI chatbot, I ran into a challenge where the
+                backend was intermittently dropping responses from the AI API under concurrent requests. The app would
+                work fine in isolation but break unpredictably in real usage — which is the worst kind of bug.<br><br>
+                Rather than guessing, I <strong>isolated the problem systematically</strong> — logged every request
+                cycle, identified that async handlers weren't resolving in the right order, and restructured the
+                middleware chain. It took time, but fixing it properly rather than patching around it made the app
+                stable. The lesson: don't paper over bugs. Understand them, then fix the root.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q5</span>
+                <span class="q-text">How do you handle working under pressure or tight deadlines?</span>
+            </div>
+            <div class="answer">
+                I've developed a fairly structured approach to this. When a deadline is approaching, the first thing I
+                do is <strong>break the task into smaller, ordered chunks</strong> — what's blocking everything else,
+                what can be done in parallel, and what can be cut if needed.<br><br>
+                I also manage my energy intentionally. I structure my study and work schedule around my most productive
+                hours, using a "weekdays maintain, weekends grow" model where weekdays handle essential tasks and
+                weekends are reserved for deeper, more demanding work. This prevents burnout while keeping momentum.
+                When things get genuinely overwhelming, I pause, reset, and come back with fresh eyes rather than
+                pushing through and making poor decisions under stress.
+            </div>
+        </div>
+
+        <!-- ── CATEGORY 3 ── -->
+        <div class="category-label">03 · Skills &amp; Projects</div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q6</span>
+                <span class="q-text">What relevant skills or qualifications do you possess for this role?</span>
+            </div>
+            <div class="answer">
+                My technical stack includes <strong>JavaScript, Node.js, Express.js, MongoDB, React, and Tailwind
+                    CSS</strong> — the full MERN stack. I have hands-on experience with REST API development, JWT-based
+                authentication, database schema design, and Mongoose ODM.<br><br>
+                Beyond the stack, I've worked with PostgreSQL and the pg library for a PERN stack project, so I'm
+                comfortable with both SQL and NoSQL paradigms. I also have solid fundamentals — data structures and
+                algorithms (145+ LeetCode problems), Git version control, and basic system design thinking.
+                Soft-skill-wise, I communicate clearly, document my code, and prefer planning before implementation,
+                which reduces errors and rework.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q7</span>
+                <span class="q-text">Can you give an example of a successful project you were a part of?</span>
+            </div>
+            <div class="answer">
+                One project I'm particularly proud of is <strong>ChatZee</strong>, an AI-integrated MERN chat
+                application I built. The challenge was connecting a frontend interface to an AI API in a way that felt
+                seamless and responsive — not just a basic chatbox.<br><br>
+                I designed and built the backend with Express, handled API communication with the AI service, managed
+                session state, and built the React frontend with a clean UI using Tailwind CSS. The project taught me
+                how to handle asynchronous operations at scale, manage API rate limits gracefully, and structure a
+                backend for extensibility. It's shipped and working — and it directly informed the architectural
+                decisions I'm making in my current project, a bill splitter and group expense manager.
+            </div>
+        </div>
+
+        <!-- ── CATEGORY 4 ── -->
+        <div class="category-label">04 · Time Management &amp; Teamwork</div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q8</span>
+                <span class="q-text">How do you prioritize tasks and manage your time effectively?</span>
+            </div>
+            <div class="answer">
+                I use a structured weekly framework. Weekdays are for maintaining progress — university coursework,
+                small coding tasks, revision, and LeetCode. Weekends are for deeper work — building projects, learning
+                new technologies, or tackling harder problems that need uninterrupted focus.<br><br>
+                Within a day, I anchor my schedule around fixed commitments (prayer times, classes) and build work
+                blocks around them. I also use a <strong>planning-first approach</strong> for every project: I map out
+                the full roadmap before writing a single line of code. This prevents mid-project confusion and keeps me
+                from wasting time on implementation decisions that should've been resolved in design.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q9</span>
+                <span class="q-text">Describe a situation where you had to work as part of a team.</span>
+            </div>
+            <div class="answer">
+                During the development of <strong>StickyBits</strong>, I collaborated with a friend who was helping with
+                the frontend UI while I handled the backend. Even in a small two-person setup, coordination mattered —
+                we had to agree on API contracts, data shapes, and which features to cut from the first version to hit a
+                workable MVP.<br><br>
+                My role was backend and architecture — I set up the Express server, MongoDB schema, and auth flow, then
+                clearly documented the endpoints so my collaborator could build the frontend against them without
+                constant back-and-forth. It reinforced how much clear communication and shared documentation matter even
+                in small teams.
+            </div>
+        </div>
+
+        <!-- ── CATEGORY 5 ── -->
+        <div class="category-label">05 · Growth &amp; Adaptability</div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q10</span>
+                <span class="q-text">How do you handle constructive criticism or feedback?</span>
+            </div>
+            <div class="answer">
+                I genuinely welcome it — and I mean that practically, not just as an interview answer. When I get
+                feedback on my code or my work, my first instinct is to understand the reasoning behind the critique
+                before reacting. Sometimes the feedback points to something I missed; sometimes it reveals a gap in my
+                knowledge that I didn't know existed.<br><br>
+                For example, when I've had code reviewed and been told my approach was suboptimal, I go back, research
+                the better pattern, and reimplement. The goal isn't to defend what I did — it's to improve. <strong>Ego
+                    is expensive in software development.</strong>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q11</span>
+                <span class="q-text">Tell me about a time when you had to adapt to a change in the workplace.</span>
+            </div>
+            <div class="answer">
+                During one of my projects, I had planned to use a specific library for state management in React. Midway
+                through, I found that the library had compatibility issues with the version of React I was using, and
+                switching versions would break other dependencies.<br><br>
+                Rather than forcing it, I <strong>pivoted to a simpler, native solution using React's built-in Context
+                    API</strong>, which actually turned out to be lighter and more maintainable for the project's scale.
+                That experience reinforced something I believe strongly: attachment to tools over outcomes is a trap.
+                The goal is always the working product, not the original plan.
+            </div>
+        </div>
+
+        <!-- ── CATEGORY 6 ── -->
+        <div class="category-label">06 · Self-Awareness &amp; Industry Knowledge</div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q12</span>
+                <span class="q-text">What are your strengths and areas for improvement?</span>
+            </div>
+            <div class="answer">
+                <strong>Strengths:</strong> I'm a strong problem-solver — 145+ LeetCode problems have built real
+                algorithmic instincts in me. I'm also a planning-first thinker; I rarely jump into code without a clear
+                mental model of the system, which reduces wasted effort. And I'm genuinely self-driven — most of what I
+                know technically, I taught myself outside of class.<br><br>
+                <strong>Area for improvement:</strong> I sometimes over-engineer solutions early on, spending too much
+                time on architecture before validating whether the approach works. I'm actively working on this by
+                building MVPs first and iterating — my current bill splitter project follows that model deliberately.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q13</span>
+                <span class="q-text">How do you stay updated on industry trends and developments?</span>
+            </div>
+            <div class="answer">
+                I follow a combination of curated sources and active practice. For news and trends, I keep track of
+                developments through developer communities, tech blogs, and YouTube channels focused on software
+                engineering and AI. For staying sharp technically, I work on LeetCode problems consistently and build
+                personal projects that force me to use new tools.<br><br>
+                I'm currently paying close attention to the AI/ML space — specifically how large language models are
+                being integrated into applications and what Python-based ML tooling is emerging. That's the field I'm
+                building toward, so I treat staying informed as part of the work, not an optional extra.
+            </div>
+        </div>
+
+        <!-- ── CATEGORY 7 ── -->
+        <div class="category-label">07 · Communication &amp; Leadership</div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q14</span>
+                <span class="q-text">Describe a situation where you had to communicate complex information to someone
+                    unfamiliar with the topic.</span>
+            </div>
+            <div class="answer">
+                When explaining the backend architecture of ChatZee to a friend who wanted to understand how it worked
+                but had no technical background, I had to translate concepts like API calls, async requests, and server
+                responses into something intuitive.<br><br>
+                I used a restaurant analogy: the frontend is the customer, the backend is the kitchen, the AI API is a
+                specialist chef we call in for specific dishes, and the server is the waiter managing orders. Once that
+                model clicked, they understood why response delays happened and why error handling mattered.
+                <strong>Abstraction over jargon</strong> — that's my default when communicating technical complexity.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q15</span>
+                <span class="q-text">What interests you most about the role's responsibilities?</span>
+            </div>
+            <div class="answer">
+                What excites me most is the opportunity to work on real systems that have real users — not academic
+                exercises. The chance to contribute to [<strong>specific responsibility from job description</strong>]
+                is directly relevant to what I'm building toward as a developer.<br><br>
+                I'm particularly drawn to roles that involve backend logic, system design, or data — those are the areas
+                where I feel most at home and where I believe I can add immediate value while growing at the same time.
+            </div>
+            <div class="tip">Fill in the bracketed part with something from the actual job description. This answer must
+                feel specific, not generic.</div>
+        </div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q16</span>
+                <span class="q-text">How do you handle a situation where you disagree with a colleague's
+                    approach?</span>
+            </div>
+            <div class="answer">
+                I start by making sure I actually understand their approach before disagreeing — sometimes what looks
+                like a wrong decision has context I'm missing. If after understanding it I still disagree, I raise it
+                directly but constructively: "I see where you're coming from, but here's a concern I have and an
+                alternative I think might work better."<br><br>
+                If we can't reach agreement, I defer to whoever has more context or authority on that decision — and I
+                commit fully to the agreed approach. <strong>Disagreeing respectfully and then executing well</strong>
+                is more valuable than being right and creating friction.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q17</span>
+                <span class="q-text">Can you provide an example of a time when you demonstrated leadership
+                    skills?</span>
+            </div>
+            <div class="answer">
+                While building <strong>ChatZee</strong>, there was a point where the project could've gone in two very
+                different directions — a simple chatbot or a more robust, session-aware AI application. No one was
+                telling me which to build; I had to make the call myself.<br><br>
+                I chose the more ambitious route, planned the architecture end-to-end before writing code, and executed
+                it phase by phase. When I hit blockers — like API rate limiting or async bugs — I resolved them without
+                abandoning the original vision. The app shipped working and stable. <strong>Leadership for me is about
+                    taking ownership of outcomes, not just tasks.</strong>
+            </div>
+        </div>
+
+        <!-- ── CATEGORY 8 ── -->
+        <div class="category-label">08 · Closing &amp; Future</div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q18</span>
+                <span class="q-text">Why should we hire you over other candidates?</span>
+            </div>
+            <div class="answer">
+                Three things set me apart. First, I'm not just a student who knows theory — I've shipped real projects.
+                StickyBits, ChatZee, and an actively growing bill splitter application. I build things that
+                work.<br><br>
+                Second, I'm a problem-first thinker. I don't reach for tools or code until I understand the problem
+                clearly. That means less rework and more intentional solutions. And third, I'm genuinely invested in
+                growing — not just in this role, but as an engineer. I'm building toward AI and Data Science, which
+                means I bring curiosity and long-term motivation that goes beyond collecting a paycheck. <strong>You'd
+                    be hiring someone who will still be learning aggressively three years from now.</strong>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q19</span>
+                <span class="q-text">Where do you see yourself in five years?</span>
+            </div>
+            <div class="answer">
+                In five years, I see myself working as an AI or Data Science engineer — someone who can build
+                intelligent systems, not just integrate APIs. The path I'm on right now — MERN stack development, strong
+                fundamentals, algorithm practice — is the foundation. The next layer is Python, machine learning, and
+                applied AI engineering.<br><br>
+                This role is part of that journey. The experience of working in a professional environment, shipping
+                real products, and collaborating with senior engineers will accelerate my growth in ways that university
+                alone can't provide. I'm not in a hurry — I want to do each phase well — but the direction is clear.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="q-row">
+                <span class="q-num">Q20</span>
+                <span class="q-text">Do you have any questions for us?</span>
+            </div>
+            <div class="answer">
+                Yes — I have a few.<br><br>
+                <strong>1.</strong> What does the day-to-day look like for someone in this role in the first month? I
+                want to understand how I'd be expected to contribute from the start.<br><br>
+                <strong>2.</strong> What does growth look like here — are there opportunities to take on more technical
+                responsibility over time?<br><br>
+                <strong>3.</strong> What's the biggest challenge the team is currently working through? I like to know
+                what I might actually be walking into.<br><br>
+                <strong>4.</strong> What do people who succeed in this role have in common?
+            </div>
+            <div class="tip">Always ask at least 2 questions. Asking nothing signals disinterest. These four are strong
+                — pick whichever 2 feel most natural in context.</div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>Built for <span>Umar</span> · EA-218 Business Communications · NEDUET 2026</p>
+        <p style="margin-top:6px; font-size:10px;">Good luck tomorrow — you've got this 🤤</p>
+    </footer>
+
+</body>
+
+</html>
